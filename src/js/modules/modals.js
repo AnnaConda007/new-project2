@@ -40,13 +40,13 @@ const modals = function () {
 
     const showModalByTime = (selector, time) => {
       setTimeout(function () {
-        let checkDisplay;// == false
-        document.querySelectorAll("[data-modal]").forEach((item) => {
-          if (getComputedStyle(item).display !== "none") { // модальное окно откроется через n сек, только если сейчас не открыдо других модальных окон 
-            checkDisplay = "block";
+        let falseCheck;// = false
+        document.querySelectorAll("[data-modal]").forEach((item) => { // модальное окно откроется через n сек, только если уже не открыто других модальных окон 
+          if (getComputedStyle(item).display !== "none") { // проверка, есть ли уже открытые окна (display !== "none", значит display=block/flex)
+            falseCheck = "true"; // ранее _false = false
           }
         });
-        if (!checkDisplay) {
+        if (!falseCheck) {  // если !falseCheck по-прежнему равно false, то есть нет открытых окон, "!" поменяет false на true и условие выполнится. И наоборот
           document.querySelector(selector).style.display = "block";
           document.body.classList.remove("modal-open");
         }
