@@ -40,13 +40,13 @@ const modals = function () {
 
     const showModalByTime = (selector, time) => {
       setTimeout(function () {
-        let booleanCheck;// = false
+        let isButtonPressed;// = false
         document.querySelectorAll("[data-modal]").forEach((item) => { // модальное окно откроется через n сек, только если уже не открыто других модальных окон 
           if (getComputedStyle(item).display !== "none") { // проверка, есть ли уже открытые окна (display !== "none", значит display=block/flex)
-            booleanCheck = true; // ранее false
+            isButtonPressed = true; // ранее false
           }
         });
-        if (!booleanCheck) {  // если ! booleanCheck по-прежнему равно false, то есть нет открытых окон, "!" поменяет false на true и условие выполнится. И наоборот
+        if (!isButtonPressed) {  // если ! isButtonPressed по-прежнему равно false, то есть нет открытых окон, "!" поменяет false на true и условие выполнится. И наоборот
           document.querySelector(selector).style.display = "block";
           document.body.classList.remove("modal-open");
         }
