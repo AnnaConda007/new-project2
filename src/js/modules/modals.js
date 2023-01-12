@@ -40,19 +40,19 @@ const modals = function () {
 
     const showModalByTime = (selector, time) => {
       setTimeout(function () {
-        let falseCheck;// = false
+        let booleanCheck;// = false
         document.querySelectorAll("[data-modal]").forEach((item) => { // модальное окно откроется через n сек, только если уже не открыто других модальных окон 
           if (getComputedStyle(item).display !== "none") { // проверка, есть ли уже открытые окна (display !== "none", значит display=block/flex)
-            falseCheck = "true"; // ранее _false = false
+            booleanCheck = true; // ранее _false = false
           }
         });
-        if (!falseCheck) {  // если !falseCheck по-прежнему равно false, то есть нет открытых окон, "!" поменяет false на true и условие выполнится. И наоборот
+        if (!booleanCheck) {  // если ! booleanCheck по-прежнему равно false, то есть нет открытых окон, "!" поменяет false на true и условие выполнится. И наоборот
           document.querySelector(selector).style.display = "block";
           document.body.classList.remove("modal-open");
         }
       }, time);
     };
-    showModalByTime(".popup-consultation", 3000);
+    showModalByTime(".popup-consultation", 60000);
   }
 
   bindModal(".button-design", ".popup-design", ".popup-design .popup-close");
