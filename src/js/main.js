@@ -4,7 +4,15 @@ import sliders from "./modules/sliders"
 window.addEventListener("DOMContentLoaded", () => {
     "use strict"
     modals()
-    sliders(".feedback-slider-item", "", ".main-prev-btn", ".main-next-btn")
-    sliders(".main-slider-item", "vertical")
+    let obj = {
+        slideItems: ".feedback-slider-item",
+        dir: "",
+        prevButton: ".main-prev-btn",
+        nextButton: ".main-next-btn"
+    }
+    sliders(obj)
+
+
+    // sliders(".main-slider-item", "vertical")
 
 })    

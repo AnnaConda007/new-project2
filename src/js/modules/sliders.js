@@ -9,19 +9,19 @@
 снова вызывает функцию showSlides с обновленным индексом. 
 И теперь при каждом нажатии на кнопку след/пред переменная с номером слайда увеличивается/уменьшается на 1. Новое значение проходит 
 проверку и нужному блоку устанавливается display="block" 
-3. Вызывается функция  activ() - автоматический слайдер
-В функции activ проверяется какое направление передалось при вызове функции. И внутри этой функции вызывается setInterval, который 
+3. Вызывается функция  activAutoslider() - автоматический слайдер
+В функции activAutoslider проверяется какое направление передалось при вызове функции. И внутри этой функции вызывается setInterval, который 
 постоянно вызывевает функцию nextSlide.  setInterval изначально задается индификатор pausesetInterval. 
 4.при наведении мыши слайдер останавливается: обращаемся к родителю all_Slides, и ему задается соответсвующий обработчик событий
-Когда пользователь новодит мышку на слайдер просиходит clearInterval(pausesetInterval). Когда убирает - снова вызывается activ()
+Когда пользователь новодит мышку на слайдер просиходит clearInterval(pausesetInterval). Когда убирает - снова вызывается activAutoslider()
  */
-
-const sliders = (slideItems, dir, prevButton, nextButton) => {
+////////
+const sliders = (obj) => {
     let indexOfShowSlide = 1;
     let pausesetInterval;
-    const all_Slides = document.querySelectorAll(slideItems);
+    const all_Slides = document.querySelectorAll(obj.slideContent);
 
-    function showSlides(numOfshowingSlide) {
+    let showSlides = (numOfshowingSlide) => {
         if (numOfshowingSlide > all_Slides.length) {
             indexOfShowSlide = 1;
         }
@@ -36,14 +36,14 @@ const sliders = (slideItems, dir, prevButton, nextButton) => {
     }
     showSlides(indexOfShowSlide);
 
-    function nextSlide(UnitOfСhange) {
+    let nextSlide = (UnitOfСhange) => {
         indexOfShowSlide += UnitOfСhange;
         showSlides(indexOfShowSlide);
     }
     try {
         // try нужно что бы не возникало ошибки, если при вызове функции в main будут переданы не все параметры. Так как для вызова функци в таймере не нужны кнопки вызова след слайда
-        const prevBtn = document.querySelector(prevButton);
-        const nextBtn = document.querySelector(nextButton);
+        const prevBtn = document.querySelector(obj.prevButton);
+        const nextBtn = document.querySelector(obj.nextButton);
 
         prevBtn.addEventListener("click", () => {
             nextSlide(-1);
@@ -58,8 +58,8 @@ const sliders = (slideItems, dir, prevButton, nextButton) => {
         });
     } catch (e) { }
 
-    function activ() {
-        if (dir === "vertical") {
+    let activAutoslider = () => {
+        if (obj.dir === "vertical") {
       /*?*/ pausesetInterval = setInterval(() => {
             // присваение setInterval в pausesetInterval не влиет на выполние setInterval. Это просто пометка setInterval отдельным индификатором, что бы потом обратиться к именно к нему?
             nextSlide(1);
@@ -73,12 +73,12 @@ const sliders = (slideItems, dir, prevButton, nextButton) => {
             }, 3000);
         }
     }
-    activ();
+    activAutoslider();
     all_Slides[0].parentNode.addEventListener("mouseenter", () => {
         clearInterval(pausesetInterval);
     });
     all_Slides[0].parentNode.addEventListener("mouseleave", () => {
-        activ();
+        activAutoslider();
     });
 };
 export default sliders;
