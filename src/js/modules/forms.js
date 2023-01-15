@@ -1,7 +1,6 @@
 //import checkNumInputs from "./checkNumInputs"
 //checkNumInputs(`input[name="user_phone"]`)
 
-// !! ??  при отправки формы дизайнеру после выполения pjstData остается пустое окно popup-content. При отпрвки формы консультанту, окно заполнено предложением оставить заявку на звонок 
 // ?! не срабатывает  alert("ERROR!") //
 
 const forms = () => {
@@ -63,29 +62,36 @@ const forms = () => {
             form.closest('.popup-design')
                 ? (api = path.designer)
                 : (api = path.question)
-            console.log(api)
+            //console.log(api)
 
-            postData("assets/server.php", formData)
-                .then((resultFetch) => {
-                    console.log(resultFetch)
-                    statusImg.setAttribute('src', message.ok)
-                    textMessage.textContent = message.success
-                })
-                .catch(() => {
-/*?*/            alert("ERROR!") //? срабатывает только при открытой консоли
-                    statusImg.setAttribute('src', message.fail)
-                    textMessage.textContent = message.failure
-                })
-                .finally(() => {
-                    clearAllInputs()
-                    setTimeout(() => {
-                        statusMessageDiv.remove()
-                        form.style.display = "block"
-                        form.classList.remove("fadeOutUp")
-                        form.classList.add("fadeInUp")
-                    }, 5000)
 
-                })
+            const data = {}
+            formData.forEach((value, key) => (data[key] = value))
+            console.log("data: " + data)
+
+            const success = () => {
+                console.log("success!")
+                statusImg.setAttribute('src', message.ok)
+                textMessage.textContent = message.success
+            }
+
+            const error = () => {
+                console.log("error!")
+                statusImg.setAttribute('src', message.fail)
+                textMessage.textContent = message.failure
+            }
+
+            const variants = [error, success]
+
+            clearAllInputs()
+
+            setTimeout(() => {
+                statusMessageDiv.remove()
+                form.style.display = "block"
+                form.classList.remove("fadeOutUp")
+                form.classList.add("fadeInUp")
+            }, 5000)
+
         })
     })
 }
