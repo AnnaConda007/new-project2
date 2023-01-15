@@ -21,13 +21,7 @@ const forms = () => {
         question: 'assets/question.php',
     }
 
-    const postData = async (url, data) => {
-        const resultFetch = await fetch(url, {
-            method: 'POST',
-            body: data,
-        })
-        return await resultFetch.text()
-    }
+
     const clearAllInputs = () => {
         allInputs.forEach((input) => {
             input.value = "";
@@ -62,7 +56,7 @@ const forms = () => {
             form.closest('.popup-design')
                 ? (api = path.designer)
                 : (api = path.question)
-            //console.log(api)
+
 
 
             const data = {}
@@ -81,7 +75,8 @@ const forms = () => {
                 textMessage.textContent = message.failure
             }
 
-            const variants = [error, success]
+            const variants = () => { error, success }
+            variants[Math.floor(Math.random() * variants.length)]
 
             clearAllInputs()
 
