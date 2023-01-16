@@ -1,12 +1,11 @@
 //import checkNumInputs from "./checkNumInputs"
 //checkNumInputs(`input[name="user_phone"]`)
 
-// !! ??  при отправки формы дизайнеру после выполения pjstData остается пустое окно popup-content. При отпрвки формы консультанту, окно заполнено предложением оставить заявку на звонок 
-// ?! не срабатывает  alert("ERROR!") //
 
 const forms = () => {
     const allForms = document.querySelectorAll('form')
     const allInputs = document.querySelectorAll('input')
+    const uploadImgInput = document.querySelectorAll('[name="upload"]')
 
     const message = {
         loading: 'Загрузка....',
@@ -31,10 +30,22 @@ const forms = () => {
     }
     const clearAllInputs = () => {
         allInputs.forEach((input) => {
-            input.value = "";
-        });
-    };
+            input.value = ''
+        })
+        uploadImgInput.forEach((input) => {
+            input.previousElementSibling.textContent = 'Файл не выбран'
+        })
+    }
 
+    uploadImgInput.forEach((inputName) => {
+        inputName.addEventListener('input', () => {
+            let dots
+            const arr = inputName.files[0].name.split('.')
+            arr[0].length > 6 ? (dots = '...') : (dots = '.')
+            const name = arr[0].substring(0, 6) + dots + arr[1]
+            inputName.previousElementSibling.textContent = name
+        })
+    })
 
     allForms.forEach((form) => {
         form.addEventListener('submit', (e) => {
@@ -44,17 +55,17 @@ const forms = () => {
             statusMessageDiv.classList.add('status')
             form.parentNode.appendChild(statusMessageDiv)
 
-            form.classList.add('animated', "fadeOutUp")
+            form.classList.add('animated', 'fadeOutUp')
             setTimeout(() => {
                 form.style.display = 'none'
             }, 400)
 
-            let statusImg = document.createElement('img')
+            const statusImg = document.createElement('img')
             statusImg.setAttribute('src', message.spinner)
             statusImg.classList.add('animated', 'fadeInUp')
             statusMessageDiv.appendChild(statusImg)
 
-            let textMessage = document.createElement('div')
+            const textMessage = document.createElement('div')
             textMessage.textContent = message.loading
             statusMessageDiv.appendChild(textMessage)
 
@@ -63,16 +74,13 @@ const forms = () => {
             form.closest('.popup-design')
                 ? (api = path.designer)
                 : (api = path.question)
-            console.log(api)
 
-            postData("assets/server.php", formData)
+            postData(api, formData)
                 .then((resultFetch) => {
-                    console.log(resultFetch)
                     statusImg.setAttribute('src', message.ok)
                     textMessage.textContent = message.success
                 })
                 .catch(() => {
-/*?*/            alert("ERROR!") //? срабатывает только при открытой консоли
                     statusImg.setAttribute('src', message.fail)
                     textMessage.textContent = message.failure
                 })
@@ -80,11 +88,10 @@ const forms = () => {
                     clearAllInputs()
                     setTimeout(() => {
                         statusMessageDiv.remove()
-                        form.style.display = "block"
-                        form.classList.remove("fadeOutUp")
-                        form.classList.add("fadeInUp")
+                        form.style.display = 'block'
+                        form.classList.remove('fadeOutUp')
+                        form.classList.add('fadeInUp')
                     }, 5000)
-
                 })
         })
     })
