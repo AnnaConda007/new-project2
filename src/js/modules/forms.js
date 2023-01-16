@@ -61,7 +61,7 @@ const forms = () => {
 
             const data = {}
             formData.forEach((value, key) => (data[key] = value))
-            console.log("data: " + data)
+            console.log("data: ", JSON.stringify(data))
 
             const success = () => {
                 console.log("success!")
@@ -75,8 +75,8 @@ const forms = () => {
                 textMessage.textContent = message.failure
             }
 
-            const variants = () => { error, success }
-            variants[Math.floor(Math.random() * variants.length)]
+            const variants = [error, success]
+            variants[Math.floor(Math.random() * variants.length)]()
 
             clearAllInputs()
 
