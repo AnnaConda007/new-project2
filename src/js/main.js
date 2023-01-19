@@ -14,5 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
     mask(`[name="phone"]`)
     checkTextInputs(`[name="name"]`)
     checkTextInputs(`[name="message"]`)
-    showMoreStyles(`.button-styles`, `#styles.row`)
+    showMoreStyles(`.button-styles`, `#styles.row`)// ошибка в консоли
+    //showMoreStyles(`.button-styles`, `.row`)    //без "#styles" блок появляется, ошибки не возникает (вверху страницы)
+
 })

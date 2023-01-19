@@ -6,23 +6,22 @@ const showMoreStyles = (triger, wrapper) => {
     btnMoreStyle.addEventListener("click", function () {
         getResponse("assets/db.json")
             .then(responseAfterFetch => createCards(responseAfterFetch.styles))
-        this.remove()
+        // this.remove()
     })
 
 
     function createCards(res) {
         res.forEach(({ src, title, link }) => {
             let card = document.createElement("div")
-            /*  card.classList.add("animated", "fedeInUp", "col-sm-3", "col-sm-offset-0", "col-xs-10", "col-xs-offset-1")
-              card.innerHTML = `
+            card.classList.add("animated", "fedeInUp", "col-sm-3", "col-sm-offset-0", "col-xs-10", "col-xs-offset-1")
+            card.innerHTML = `
       <div class=styles-block>
           <img src=${src} alt>
           <h4>${title}</h4>
           <a href=${link}>Подробнее</a>
       </div>
       `
-      */card.style.backgroundColor = "red"
-            console.log(typeof (card))
+
             document.querySelector(wrapper).appendChild(card)
 
         });
