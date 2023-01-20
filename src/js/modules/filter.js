@@ -5,7 +5,7 @@ const filter = () => {
     const no = document.querySelector(".portfolio-no");
     const allSample = wrapper.querySelectorAll(".all")
     const createElement = (selectorName) => {
-        const btn = document.querySelector(selectorName);
+        const btn = menu.querySelector(selectorName);
         btn.addEventListener("click", () => {
             filterFunc(selectorName);
         });
