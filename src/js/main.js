@@ -5,12 +5,23 @@ import mask from "./modules/mask";
 import checkTextInputs from "./modules/checkTextInputs";
 import showMoreStyles from "./modules/showMoreStyles";
 import calc from "./modules/calc";
+import filter from "./modules/filter";
 
 window.addEventListener("DOMContentLoaded", () => {
     "use strict"
     modals()
-    sliders({ slideItems: ".feedback-slider-item", dir: "", prevButton: ".main-prev-btn", nextButton: ".main-next-btn" })
-    sliders({ slideItems: ".main-slider-item", dir: "vertical", prevButton: "", nextButton: "" })
+    sliders({
+        slideItems: ".feedback-slider-item",
+        dir: "",
+        prevButton: ".main-prev-btn",
+        nextButton: ".main-next-btn"
+    })
+    sliders({
+        slideItems: ".main-slider-item",
+        dir: "vertical",
+        prevButton: "",
+        nextButton: ""
+    })
     forms()
     mask(`[name="phone"]`)
     checkTextInputs(`[name="name"]`)
@@ -23,5 +34,5 @@ window.addEventListener("DOMContentLoaded", () => {
         promo: ".promocode",
         result: ".calc-price"
     })
-
+    filter()
 })
