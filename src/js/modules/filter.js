@@ -1,70 +1,54 @@
 const filter = () => {
-    const menu = document.querySelector(".portfolio-menu")
-    const menuItems = menu.querySelectorAll("li")
-    const btnAll = menu.querySelector(".all")
-    const btnLovers = menu.querySelector(".lovers")
-    const btnChef = menu.querySelector(".chef")
-    const btnGirl = menu.querySelector(".girl")
-    const btnGuy = menu.querySelector(".guy")
-    const btnGrandmother = menu.querySelector(".grandmother")
-    const btnGranddad = menu.querySelector(".granddad")
-    const wrapper = document.querySelector(".portfolio-wrapper")
-    const allSample = wrapper.querySelectorAll(".all")
-    const girlSample = wrapper.querySelectorAll(".girl")
-    const loversSample = wrapper.querySelectorAll(".lovers")
-    const chefSample = wrapper.querySelectorAll(".chef")
-    const guySample = wrapper.querySelectorAll(".guy")
-    const no = document.querySelector(".portfolio-no")
+    const menu = document.querySelector(".portfolio-menu");
+    const menuItems = menu.querySelectorAll("li");
+    const wrapper = document.querySelector(".portfolio-wrapper");
+    const no = document.querySelector(".portfolio-no");
 
-    const filterFunc = (nameOfSample) => {
-        allSample.forEach(sample => { // скрываем каждый пример
-            sample.style.display = "none"
-            sample.classList.remove("animated", "fadeIn")
-        })
-        no.style.display = "none" // и дополнительно скрываем и так скрытый(по умолчанию) блок
-        no.classList.remove("animated", "fadeIn")
+    const createElement = (selectorName) => {
+        const btn = document.querySelector(selectorName);
+        btn.addEventListener("click", () => {
+            filterFunc(selectorName);
+        });
+    };
+    const filterFunc = (selector) => {
+        let NameSample = wrapper.querySelectorAll(selector);
 
-      /*?*/  if (nameOfSample != undefined) { // показываем нужный блок
-            nameOfSample.forEach(sampleName => {
-                sampleName.style.display = "block"
-                sampleName.classList.add("animated", "fadeIn")
-            })
+        allSample.forEach((sample) => {
+            sample.style.display = "none";
+            sample.classList.remove("animated", "fadeIn");
+        });
+        no.style.display = "none";
+        no.classList.remove("animated", "fadeIn");
+
+        if (NameSample == wrapper.querySelectorAll(".all")) {
+            sample.style.display = "block";
+            sample.classList.add("animated", "fadeIn");
+        } else if (NameSample != undefined) {
+            NameSample.forEach((NameSample) => {
+                NameSample.style.display = "block";
+                NameSample.classList.add("animated", "fadeIn");
+            });
         } else {
-            no.style.display = "block" // if  nameOfSample = undefined - то показываем блок "no"
-            no.classList.add("animated", "fadeIn")
+            no.style.display = "block";
+            no.classList.add("animated", "fadeIn");
         }
-    }
+    };
 
-    btnAll.addEventListener("click", () => {
-        filterFunc(allSample)
-    })
-    btnLovers.addEventListener("click", () => {
-        filterFunc(loversSample)
-    })
-    btnChef.addEventListener("click", () => {
-        filterFunc(chefSample)
-    })
-    btnGuy.addEventListener("click", () => {
-        filterFunc(guySample)
-    })
-    btnGirl.addEventListener("click", () => {
-        filterFunc(girlSample)
-    })
-    btnGrandmother.addEventListener("click", () => {
-        filterFunc()
-    })
-    btnGranddad.addEventListener("click", () => {
-        filterFunc()
-    })
+    const btnAll = createElement(".all");
+    const btnLovers = createElement(".lovers");
+    const btnChef = createElement(".chef");
+    const btnGirl = createElement(".girl");
+    const btnGuy = createElement(".guy");
+    const btnGrandmother = createElement();
+    const btnGranddad = createElement();
 
     menu.addEventListener("click", (e) => {
-        const target = e.target
+        const target = e.target;
         if (target && target.tagName == "LI") {
-            menuItems.forEach(item => item.classList.remove("active"))
-            target.classList.add("active")
+            menuItems.forEach((item) => item.classList.remove("active"));
+            target.classList.add("active");
         }
-    })
+    });
+};
 
-}
-
-export default filter
+export default filter;
