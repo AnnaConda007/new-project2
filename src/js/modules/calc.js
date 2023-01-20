@@ -9,7 +9,7 @@ const calc = ({ size, material, option, promo, result }) => {
 
     const calcFunc = () => {
         sum = Math.round(
-            +sizeBlock.value * +materialBlock.value + +optionBlock.value
+            Number(sizeBlock.value) * Number(materialBlock.value) + Number(optionBlock.value)
         );
 
         if (sizeBlock.value == "" || materialBlock.value == "") {
