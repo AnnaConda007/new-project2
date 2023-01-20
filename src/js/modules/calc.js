@@ -1,4 +1,4 @@
-const calc = (size, material, option, promo, result) => {
+const calc = ({ size, material, option, promo, result }) => {
     const sizeBlock = document.querySelector(size);
     const materialBlock = document.querySelector(material);
     const optionBlock = document.querySelector(option);

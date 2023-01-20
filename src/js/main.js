@@ -16,6 +16,12 @@ window.addEventListener("DOMContentLoaded", () => {
     checkTextInputs(`[name="name"]`)
     checkTextInputs(`[name="message"]`)
     showMoreStyles(`.button-styles`, `#styles .row`)
-    calc("#size", "#material", "#options", ".promocode", ".calc-price")
+    calc({
+        size: "#size",
+        material: "#material",
+        option: "#options",
+        promo: ".promocode",
+        result: ".calc-price"
+    })
 
 })
