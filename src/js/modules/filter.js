@@ -3,7 +3,7 @@ const filter = () => {
     const menuItems = menu.querySelectorAll("li");
     const wrapper = document.querySelector(".portfolio-wrapper");
     const no = document.querySelector(".portfolio-no");
-
+    const allSample = wrapper.querySelectorAll(".all")
     const createElement = (selectorName) => {
         const btn = document.querySelector(selectorName);
         btn.addEventListener("click", () => {
@@ -20,7 +20,7 @@ const filter = () => {
         no.style.display = "none";
         no.classList.remove("animated", "fadeIn");
 
-        if (NameSample == wrapper.querySelectorAll(".all")) {
+        if (NameSample == allSample) {
             sample.style.display = "block";
             sample.classList.add("animated", "fadeIn");
         } else if (NameSample != undefined) {
