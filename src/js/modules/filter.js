@@ -4,12 +4,14 @@ const filter = () => {
     const wrapper = document.querySelector(".portfolio-wrapper");
     const no = document.querySelector(".portfolio-no");
     const allSample = wrapper.querySelectorAll(".all")
+
     const createElement = (selectorName) => {
         const btn = menu.querySelector(selectorName);
         btn.addEventListener("click", () => {
             filterFunc(selectorName);
         });
     };
+
     const filterFunc = (selector) => {
         let NameSample = wrapper.querySelectorAll(selector);
 
@@ -34,13 +36,13 @@ const filter = () => {
         }
     };
 
-    const btnAll = createElement(".all");
-    const btnLovers = createElement(".lovers");
-    const btnChef = createElement(".chef");
-    const btnGirl = createElement(".girl");
-    const btnGuy = createElement(".guy");
-    const btnGrandmother = createElement();
-    const btnGranddad = createElement();
+    createElement(".all");
+    createElement(".lovers");
+    createElement(".chef");
+    createElement(".girl");
+    createElement(".guy");
+    createElement();
+    createElement();
 
     menu.addEventListener("click", (e) => {
         const target = e.target;
