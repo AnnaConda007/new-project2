@@ -12,8 +12,10 @@ const filter = () => {
         });
     };
 
+
+
     const filterFunc = (selector) => {
-        let sample = wrapperSample.querySelectorAll(selector);
+        const sample = wrapperSample.querySelectorAll(selector);
         allSample.forEach((sample) => {
             sample.style.display = "none";
             sample.classList.remove("animated", "fadeIn");
@@ -22,7 +24,7 @@ const filter = () => {
         noPortfolio.classList.remove("animated", "fadeIn");
 
         if (selector != ".grandmother" && selector != ".granddad") {
-            if (sample == allSample) {
+            if (sample === allSample) {
                 sample.style.display = "block";
                 sample.classList.add("animated", "fadeIn");
             } else if (sample != undefined) {
