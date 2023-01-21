@@ -1,9 +1,9 @@
 const filter = () => {
     const menu = document.querySelector(".portfolio-menu");
     const menuItems = menu.querySelectorAll("li");
-    const wrapper = document.querySelector(".portfolio-wrapper");
-    const no = document.querySelector(".portfolio-no");
-    const allSample = wrapper.querySelectorAll(".all")
+    const wrapperSample = document.querySelector(".portfolio-wrapper");
+    const noPortfolio = document.querySelector(".portfolio-no");
+    const allSample = wrapperSample.querySelectorAll(".all")
 
     const createElement = (selectorName) => {
         const btn = menu.querySelector(selectorName);
@@ -13,26 +13,27 @@ const filter = () => {
     };
 
     const filterFunc = (selector) => {
-        let NameSample = wrapper.querySelectorAll(selector);
-
+        let sample = wrapperSample.querySelectorAll(selector);
         allSample.forEach((sample) => {
             sample.style.display = "none";
             sample.classList.remove("animated", "fadeIn");
         });
-        no.style.display = "none";
-        no.classList.remove("animated", "fadeIn");
+        noPortfolio.style.display = "none";
+        noPortfolio.classList.remove("animated", "fadeIn");
 
-        if (NameSample == allSample) {
-            sample.style.display = "block";
-            sample.classList.add("animated", "fadeIn");
-        } else if (NameSample != undefined) {
-            NameSample.forEach((NameSample) => {
-                NameSample.style.display = "block";
-                NameSample.classList.add("animated", "fadeIn");
-            });
+        if (selector != ".grandmother" && selector != ".granddad") {
+            if (sample == allSample) {
+                sample.style.display = "block";
+                sample.classList.add("animated", "fadeIn");
+            } else if (sample != undefined) {
+                sample.forEach((sample) => {
+                    sample.style.display = "block";
+                    sample.classList.add("animated", "fadeIn");
+                });
+            }
         } else {
-            no.style.display = "block";
-            no.classList.add("animated", "fadeIn");
+            noPortfolio.style.display = "block";
+            noPortfolio.classList.add("animated", "fadeIn");
         }
     };
 
@@ -41,8 +42,8 @@ const filter = () => {
     createElement(".chef");
     createElement(".girl");
     createElement(".guy");
-    createElement();
-    createElement();
+    createElement(".granddad");
+    createElement(".grandmother");
 
     menu.addEventListener("click", (e) => {
         const target = e.target;
