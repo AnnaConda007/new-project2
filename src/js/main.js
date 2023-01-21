@@ -6,6 +6,7 @@ import checkTextInputs from "./modules/checkTextInputs";
 import showMoreStyles from "./modules/showMoreStyles";
 import calc from "./modules/calc";
 import filter from "./modules/filter";
+import pictureSize from "./modules/pictureSize";
 
 window.addEventListener("DOMContentLoaded", () => {
     "use strict"
@@ -35,4 +36,5 @@ window.addEventListener("DOMContentLoaded", () => {
         result: ".calc-price"
     })
     filter()
+    pictureSize(".sizes-block")
 })
