@@ -6,9 +6,9 @@ const accordion = (triggers) => {
             this.classList.toggle("active-style"); // toggle  если класс есть, то он его убирает, если класса нет, то добавляет
             this.nextElementSibling.classList.toggle("active-content");
 
-            this.classList.contains("active-style") ?
-                this.nextElementSibling.style.maxHeight = `${this.nextElementSibling.scrollHeight}80px` :
-                this.nextElementSibling.style.maxHeight = `0`;
+            this.nextElementSibling.style.maxHeight = this.classList.contains("active-style") ?
+                `${this.nextElementSibling.scrollHeight}80px` : // если this.classList.contains("active-style") возр true
+                `0`; // если this.classList.contains("active-style") возр false
 
         });
     });
