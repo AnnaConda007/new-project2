@@ -1,29 +1,23 @@
 const accordion = (triggers) => {
-    const btns = document.querySelectorAll(triggers)
+    const btns = document.querySelectorAll(triggers);
 
-    btns.forEach(btn => {
+    btns.forEach((btn) => {
         btn.addEventListener("click", function () {
-            this.classList.toggle("active-style")                           // toggle  если класс есть, то он его убирает, если класса нет, то добавляет
-            this.nextElementSibling.classList.toggle("active-content")
+            this.classList.toggle("active-style"); // toggle  если класс есть, то он его убирает, если класса нет, то добавляет
+            this.nextElementSibling.classList.toggle("active-content");
 
-            if (this.classList.contains("active-style")) {
-                this.nextElementSibling.style.maxHeight = `${this.nextElementSibling.scrollHeight}80px`
-            } else {
-                this.nextElementSibling.style.maxHeight = `0px`
-            }
-        })
-    })
+            this.classList.contains("active-style") ?
+                this.nextElementSibling.style.maxHeight = `${this.nextElementSibling.scrollHeight}80px` :
+                this.nextElementSibling.style.maxHeight = `0`;
 
+        });
+    });
+};
 
+export default accordion;
 
-
-
-
-
-
-
-    //const blocks = document.querySelectorAll(items)
-    /*
+//const blocks = document.querySelectorAll(items)
+/*
         blocks.forEach(block => {
             block.classList.add("animated", "fadeInDown")
         })
@@ -39,6 +33,3 @@ const accordion = (triggers) => {
             })
         })
     */
-}
-
-export default accordion
