@@ -1,7 +1,6 @@
 const burger = (menuSelector, burgerSelector) => {
     const menu = document.querySelector(menuSelector)
     const burger = document.querySelector(burgerSelector)
-
     menu.style.display = "none" // для подстраховки
 
     burger.addEventListener("click", () => {
