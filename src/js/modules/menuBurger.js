@@ -1,16 +1,17 @@
 const burger = (menuSelector, burgerSelector) => {
     const menu = document.querySelector(menuSelector)
     const burger = document.querySelector(burgerSelector)
-    menu.style.display = "none" // для подстраховки
+    const widthAdapt = 992
+
+    menu.style.display = "none"
 
     burger.addEventListener("click", () => {
-        if (menu.style.display == "none" && window.screen.availWidth < 993) {
-            menu.style.display = "block"
-        } else menu.style.display = "none"
+        menu.style.display = (menu.style.display === "none" && window.screen.availWidth <= widthAdapt) ? "block" : "none"
+
     })
 
     window.addEventListener("resize", () => {
-        if (window.screen.availWidth > 992) {
+        if (window.screen.availWidth > widthAdapt) {
             menu.style.display = "none"
         }
     })
