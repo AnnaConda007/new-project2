@@ -15,60 +15,51 @@ const scrolling = (upSelector) => {
 
     const calcScroll = () => {
         upElem.addEventListener("click", function (e) {
-            // повесили обработчик на стрелку
             let scrollTop = Math.round(body.scrollTop || element.scrollTop); // переменая показывает сколько прокрутили
-      /*??? */ if (this.hash !== "") {
-                // если у секции, в которой находится стрелка, хещ != "",            //но ведь хеш (#) задан только у header
+            if (this.hash !== "") {// если элементу, на который кликнули есть хеш (в данном случае это стрелка, хеш которой ведет к header)    
                 e.preventDefault();
+                let hashElement = document.querySelector(this.hash); // получает  элемент с нужным хеш (сейчас это это header c "up")
+                let hashElementTop = 0; // сколько нужно пролистать до родителя header от стрелки(до body??)
 
-                let hashElement = document.querySelector(this.hash); // получает  хеш того элемента, на который нужно перейти (header)
-
-                //  console.log(this.hash) // up
-                //  console.log(hashElement) //  header
-                //console.log(hashElement.offsetParent)   // родитель header - body
-                //console.log(hashElement.offsetTop) // растояние от текущего расположения стрелки до body
-
-                let hashElementTop = 0; // сколько нужно пролистать до родителя header(до body??)
-
-                while (hashElement.offsetParent) {
-                    // пока у header есть родитель
-                    hashElementTop += hashElement.offsetTop;
-                    console.log(hashElementTop);
-                    hashElement = hashElement.offsetParent;
+                while (hashElement.offsetParent) {// пока у header есть родитель body - то есть всегда
+                    hashElementTop += hashElement.offsetTop;//=0  ;возвращает расстояние hashElement(header) по отношению к верхней части hashElement.offsetParent(body)
+                    //эта переменная всегда будет = 0, потому что возвразает растояние между границей элемента и его родителем, тогда зачем она ?  
+            /*? */ hashElement = hashElement.offsetParent;   // hashElement = body, зачем нужна эта строка? к тому же hashElement нигде похже не используется?
                 }
-                hashElementTop = Math.round(hashElementTop);
-                smoothScroll(scrollTop, hashElementTop, this.hash);
+                hashElementTop = Math.round(hashElementTop);// округляет ноль
+                smoothScroll(scrollTop, hashElementTop, this.hash); // scrollTop(сколько прокрутили) hashElementTop(куда перейти)  this.hash(hash стрелки(еще раз куда перейти))
             }
         });
     };
 
     const smoothScroll = (from, to, hash) => {
-        let timeInterval = 1;
-        let prevScrolTop;
-        let speed
-        if (to > from) {
+        let timeInterval = 5;
+        let prevScrolTop; // сколько пискселй нужно прокурутить до header??
+        let speed // скорость скрола
+        if (to > from) { // если высота хеш элемента больше чем текущее место// эта часть не испоьзуется в этом скрипте, никогда.
             speed = 30;
-        } else {
+        } else {              // если элемент с хешом расположен на меньшей высоте(в верху страницы), чем текущее положение
             speed = -30;
+
         }
 
         let move = setInterval(function () {
-            let scrollTop = Math.round(body.scrollTop || element.scrollTop);
+            let scrollTop = Math.round(body.scrollTop || element.scrollTop);// показывает сколько пикселей прокручено от начала страницы
             if (
-                prevScrolTop === scrollTop ||
-                (to > from && scrollTop >= to) ||
-                (to < from && scrollTop <= to)
+                prevScrolTop === scrollTop ||      //  переменная prevScrolTop с 62 строки = растоянию от элемента до верха страницы, или
+                (to > from && scrollTop >= to) ||// текущее положение стрелки в пикселях больше чем верх страницы(0)  и  проскроленное растояние >= положения стрелки в пикселях
+                (to < from && scrollTop <= to) //     текущее положение стрелки в пикселях меньше чем верх страницы(0)  и  проскроленное растояние <= положения стрелки в пикселях// это на случай, если элемент к которому нужно перейти расположен вниху страницы?
             ) {
-                clearInterval(move);
+                clearInterval(move);  // зачем очищать интервал? Это происходит если "докрутили" до нужного элемента ?
                 history.replaceState(
                     history.state,
                     document.title,
                     location.href.replace(/#.*$/g, "") + hash
                 );
             } else {
-                body.scrollTop += speed;
-                element.scrollTop += speed;
-                prevScrolTop = scrollTop;
+                body.scrollTop += speed; // увеличиваем скрол от  боди до ?стрелки? на -30(уменьшаем растояние) ? 
+                element.scrollTop += speed;// то же самое но с element
+                prevScrolTop = scrollTop;// prevScrolTop равна оставшемуся растоянию, перезаписывается 
             }
         }, timeInterval);
     };
