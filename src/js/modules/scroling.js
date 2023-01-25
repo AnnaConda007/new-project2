@@ -37,7 +37,7 @@ const scrolling = (upSelector) => {
                     hashElement = hashElement.offsetParent;
                 }
                 hashElementTop = Math.round(hashElementTop);
-                smoothScroll(scrollTop, hashElement, this.hahs);
+                smoothScroll(scrollTop, hashElementTop, this.hash);
             }
         });
     };
@@ -77,29 +77,3 @@ const scrolling = (upSelector) => {
 };
 export default scrolling;
 
-/*
-const smoothScroll = (from, to, hash) => {
-        let timeInterval = 1;
-        let prevScrolTop;
-        if (to > from) {
-            speed = 30;
-        } else {
-            speed = -30;
-        }
-
-        let move = setInterval(function () {
-            let scrollTop = Math.round(body.scrollTop || element.scrollTop);
-            if (
-                prevScrolTop === scrollTop ||
-                (to > from && scrollTop >= to) ||
-                (to < from && scrollTop <= to)
-            ) {
-                clearInterval(move)
-                history.replaceState(history.state, document.title, location.href.replace(/#.*$/g, "") + hash)
-            } else {
-                body.scrollTop += speed
-                element.scrollTop += speed
-                prevScrolTop = scrollTop
-            }
-        }, timeInterval);
-    }; */
