@@ -10,12 +10,10 @@ const scrolling = (upSelector) => {
         }
     });
 
-
     const links = document.querySelectorAll("a");
     links.forEach((link) => {
         link.addEventListener("click", function (e) {
             e.preventDefault();
-
             if (this.hash[0] === "#") {
                 const targetElemenForScroll = document.querySelector(this.hash);
                 scroll(targetElemenForScroll);
@@ -26,11 +24,8 @@ const scrolling = (upSelector) => {
     function scroll(target) {
         target.scrollIntoView({ behavior: "smooth" });
     }
-
 };
 export default scrolling;
-
-
 
 
 
