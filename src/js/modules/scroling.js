@@ -14,6 +14,7 @@ const scrolling = (upSelector) => {
     links.forEach((link) => {
         link.addEventListener("click", function (e) {
             e.preventDefault();
+            console.log(this.hash); // отображает hash
             if (this.hash[0] === "#") {
                 const targetElemenForScroll = document.querySelector(this.hash);
                 scroll(targetElemenForScroll);
@@ -24,26 +25,32 @@ const scrolling = (upSelector) => {
     function scroll(target) {
         target.scrollIntoView({ behavior: "smooth" });
     }
+
+    window.addEventListener("click", function (e) {
+        e.preventDefault();
+        console.log(this); // window
+        console.log(this.id); // undefined
+    });
 };
 export default scrolling;
 
+/*
+      upElem.addEventListener("click", function (e) {
+          e.preventDefault()
+          const targetElement = document.querySelector(this.hash);
+          console.log(targetElement)
+          scroll(targetElement)
+  
+      })
+  
+      function scroll(target) {
+          target.scrollIntoView({ behavior: "smooth" });
+      }
+  
+ 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  */
 
 /*
 
