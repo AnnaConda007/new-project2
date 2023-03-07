@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+let date = new Date(1641405600000)
+console.log(date)
+
+/* промисы
+let promisName = new Promise((выполнено, отклонено) => {
+  setTimeout(()=>{
+ let sendInPromise = "value"
+ let c = 6
+ if(c==5){выполнено (sendInPromise)}     // вернет ошибку
+ отклонено(  отклонено(new Error('ошибочка')))   
+}, 1000)
+}) 
+
+promisName.then((значениеВыполнено)=>{
+  console.log("then " +  значениеВыполнено)
+})
+promisName.catch((значениеОшибки)=>{ console.log(значениеОшибки)})
+*/
+
+ 
+/*
+ 
+function f(){
+  let count = 0
+ function ff(j){
+  count=count+j
+  return count
+}return ff
+
+}
+ 
+let counter = f()
+console.log(counter(1))
+console.log(counter(2))
+console.log(counter(3))
+
+*/
+  /* функция конструкция
+Сначала создаем функцию, которая зполняет наш объект
+  Важно - имя функции с Большой буквы!
+
+  Создаем переменную, присваеваем ей эту функцию через слово new - new НазваниеФункции
+  Готова
+  Каждая переменная которой присвается new НазваниеФункции новый объект ( и это будет один и тот же объект, всегда )
+
+   function Dog (name){
+this.dogname=name;
+this.nice=true;
+this.console=()=>{console.log(Dog)}}
+
+let charly = new Dog("charly")
+charly.angry=false;
+console.log(charly.angry)
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*замыкание:
+ создали родительскую функцию
+ создали внутри нее внутреннюю функция, ВЕРНУЛИ ее, не вызвали
+ 
+ создали переменную(в дальнейшем ссылка на внутреннюю функцию)
+присвоили новой переменной результат вызова родительской функции
+
+В итоге родительская функция выполнилась и новая переменная получила доступ 
+к внутренней, ВОЗВРАЩЕННОЙ функции, и через нее мы можем к ней обращаться 
+
+
+Зачем это нужно: внуть родительской функции записываем переменную, вместо того что бы создавать глобальную
+и так дочерняя функция будет иметь к ней доступ , но мы не создаем лишних гобальных
+
+function parents (){
+  let parents = " родитель"
+
+function child(){
+  let child =" ребенок"
+  console.log(parents)
+  console.log(child)
+} 
+return child
+
+}
+let childwrap = parents()
+childwrap()
+*/
+
+
+
+</script>
+
+</body>
+
+
+
+</html>
+
+
